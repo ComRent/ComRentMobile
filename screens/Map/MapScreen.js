@@ -15,10 +15,6 @@ class MapScreen extends React.Component {
         headerShown: false
     };
 
-    state = {
-        top: new Animated.Value(6),
-    }
-
     toggleTouchWhiteBall = () => {
 
     }
@@ -39,19 +35,14 @@ class MapScreen extends React.Component {
                     >
                         <CityText>北京市</CityText>
                     </LinearGradient>
-                    <AnimatedWhiteBall style={{marginTop: this.state.top}}>
-                        <TouchableOpacity onPressIn={this.toggleTouchWhiteBall}>
-                            <WhiteBall>
-                                <Entypo name="chevron-up" size={35} color="rgb(178,156,142)" />
-                            </WhiteBall>
-                        </TouchableOpacity>
-                    </AnimatedWhiteBall>
+
                 </TopTabContainer>
 
 
 
 
                 <BottomContainer>
+
                     <LinearGradient
                         // Background Linear Gradient
                         colors={['rgb(191,174,163)','rgb(178,156,142)','rgb(178,156,142)' ,'rgb(178,156,142)', 'rgb(170,149,135)']}
@@ -66,6 +57,14 @@ class MapScreen extends React.Component {
                             borderRadius: 40,
                         }}
                     />
+
+                    <WhiteBallView>
+                        <TouchableOpacity onPress={this.toggleTouchWhiteBall}>
+                            <WhiteBall>
+                                <Entypo name="chevron-up" size={35} color="rgb(178,156,142)" />
+                            </WhiteBall>
+                        </TouchableOpacity>
+                    </WhiteBallView>
 
                     <TabbarFullContainer>
                         <LinearGradient
@@ -181,8 +180,6 @@ const BottomContainer = styled.View`
   width: 100%;
   height: 110px;
   flex-direction: column;
-  position: absolute;
-  bottom: 0;
   align-items: center;
 `
 const WhiteBallView = styled.View`
@@ -193,8 +190,8 @@ const WhiteBallView = styled.View`
   box-shadow: 0px 3px #b3a193;
   shadow-radius: 8px;
   align-items: center;
+  margin-top: 10px;
 `
-const AnimatedWhiteBall = Animated.createAnimatedComponent(WhiteBallView)
 const WhiteBall = styled.View`
   width: 100%;
   height: 100%;
@@ -207,6 +204,8 @@ const TabbarFullContainer = styled.View`
   justify-content: center;
   background-color: transparent;
   z-index: 100;
+  position: absolute;
+  bottom: 20px;
 `;
 
 const BottomButtonView = styled.View`
