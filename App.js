@@ -5,7 +5,8 @@ import LoginScreen from "./screens/LoginGroup/LoginScreen";
 import AppNavigator from "./navigator/AppNavigator";
 
 const initialState = {
-    action: "openMenu"
+    action: "openMenu",
+    activateNumber: 3,
 }
 
 const reducer = (state = initialState) => {

@@ -5,9 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
-const Tabbar = props => (
-    <FullContainer>
+import { FontAwesome5 } from '@expo/vector-icons';
+import {TouchableOpacity} from "react-native-gesture-handler";
+import {connect} from "react-redux";
+function mapStateToProps( state ) {
+    return { action: state.action };
+}
+class Tabbar extends React.Component {
+    render() {
+        return (
+        <TabbarFullContainer>
             <LinearGradient
                 // Background Linear Gradient
                 colors={['rgb(203,181,168)', '#755841']}
@@ -22,78 +29,86 @@ const Tabbar = props => (
                     flexDirection: 'row',
                 }}
             >
-                <AntDesign name={props.activateNumber == 1? "appstore1":"appstore-o"}
+                <AntDesign name={this.props.activateNumber == 1? "appstore1":"appstore-o"}
                            size={25}
-                           color={props.activateNumber == 1? "#FEF8F3":"rgb(203,181,168)"}
+                           color={this.props.activateNumber == 1? "#FEF8F3":"rgb(203,181,168)"}
                            style={{marginBottom: 30,}}/>
-                <MaterialCommunityIcons name={props.activateNumber == 2? "order-bool-ascending-variant":"order-bool-ascending"}
+                <MaterialCommunityIcons name={this.props.activateNumber == 2? "order-bool-ascending-variant":"order-bool-ascending"}
                                         size={27}
-                                        color={props.activateNumber == 2? "#FEF8F3":"rgb(203,181,168)"}
+                                        color={this.props.activateNumber == 2? "#FEF8F3":"rgb(203,181,168)"}
                                         style={{marginBottom: 30,marginLeft: 45,}} />
             </LinearGradient>
 
-        <LinearGradient
-            // Background Linear Gradient
-            colors={['rgb(203,181,168)', '#755841']}
-            style={{
-                marginBottom: -37,
-                width: 66,
-                height:120,
-                marginLeft: -1,
-            }}
-        >
-            <MiddleBigCircle>
-                <LinearGradient
-                    // Background Linear Gradient
-                    colors={['rgb(203,181,168)', '#755841']}
-                    style={{
-                        width: 52,
-                        height: 52,
-                        borderRadius: 26,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Feather name={"shopping-cart"}
-                             size={24}
-                             color={props.activateNumber == 3 ? "#FEF8F3":"rgb(203,181,168)"}
-                             style={{marginLeft:-2,}} />
-                </LinearGradient>
-            </MiddleBigCircle>
-        </LinearGradient>
+            <LinearGradient
+                // Background Linear Gradient
+                colors={['rgb(203,181,168)', '#755841']}
+                style={{
+                    marginBottom: -37,
+                    width: 66,
+                    height:120,
+                    marginLeft: -1,
+                }}
+            >
+                <MiddleBigCircle>
+                    <LinearGradient
+                        // Background Linear Gradient
+                        colors={['rgb(203,181,168)', '#755841']}
+                        style={{
+                            width: 52,
+                            height: 52,
+                            borderRadius: 26,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <FontAwesome5 name={this.props.activateNumber == 3 ? "map-marked-alt":"map-marked"}
+                                      size={24}
+                                      color={this.props.activateNumber == 3 ? "#FEF8F3":"rgb(203,181,168)"}
+                                      style={{marginLeft:0,}} />
+                    </LinearGradient>
+                </MiddleBigCircle>
+            </LinearGradient>
 
-        <LinearGradient
-            // Background Linear Gradient
-            colors={['rgb(203,181,168)', '#755841']}
-            style={{
-                marginBottom: -30,
-                marginLeft: -1,
-                width: '50%',
-                height:102,
-                borderRadius: 35,
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'row',
-            }}
-        >
-            <AntDesign name={props.activateNumber == 4 ? "enviroment":"enviromento"}
-                       size={25}
-                       color={props.activateNumber == 4 ? "#FEF8F3":"rgb(203,181,168)"}
-                       style={{marginBottom: 30, marginLeft:-25,}}/>
-            <Ionicons name={props.activateNumber == 5 ? "person":"md-person-outline"}
-                      size={25}
-                      color={props.activateNumber == 5 ? "#FEF8F3":"rgb(203,181,168)"}
-                      style={{marginBottom: 30,marginLeft: 40,}} />
-        </LinearGradient>
+            <LinearGradient
+                // Background Linear Gradient
+                colors={['rgb(203,181,168)', '#755841']}
+                style={{
+                    marginBottom: -30,
+                    marginLeft: -1,
+                    width: '50%',
+                    height:102,
+                    borderRadius: 35,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                }}
+            >
 
-    </FullContainer>
-);
+                <View4>
+                    <TouchableOpacity onPress={() => {}}>
+                        <AntDesign name={this.props.activateNumber == 4 ? "enviroment":"enviromento"}
+                                   size={25}
+                                   color={this.props.activateNumber == 4 ? "#FEF8F3":"rgb(203,181,168)"}
+                                   style={{marginBottom: 30, marginLeft:-25,}}/>
+                    </TouchableOpacity>
+                </View4>
 
-export default Tabbar;
 
-const FullContainer = styled.View`
-  position: absolute;
-  bottom: 0;
+
+                <Ionicons name={this.props.activateNumber == 5 ? "person":"md-person-outline"}
+                          size={25}
+                          color={this.props.activateNumber == 5 ? "#FEF8F3":"rgb(203,181,168)"}
+                          style={{marginBottom: 30,marginLeft: 40,}} />
+            </LinearGradient>
+
+        </TabbarFullContainer>
+        );
+    }
+}
+
+export default connect(mapStateToProps)(Tabbar);
+
+const TabbarFullContainer = styled.View`
   left: -6px;
   width: 100%;
   height: 90px;
@@ -102,18 +117,6 @@ const FullContainer = styled.View`
   background-color: transparent;
 `;
 
-const LeftContainer = styled.View`
-  width: 42%;
-  height: 80%;
-  background-color: #bfa28e;
-  border-top-right-radius: 28px;
-  overflow: hidden;
-`
-const MiddleContainer = styled.View`
-  width: 16%;
-  height: 80%;
-  background-color: #bfa28e;
-`
 const MiddleBigCircle = styled.View`
   width: 100%;
   height: 66px;
@@ -122,15 +125,8 @@ const MiddleBigCircle = styled.View`
   background-color: white;
   align-items: center;
 `
-const MiddleSmallCircle = styled.View`
-  width: 54px;
-  height: 54px;
-  background-color: #bfa28e;
-  border-radius: 27px;
-`
-const RightContainer = styled.View`
-  width: 42%;
-  height: 80%;
-  background-color: #bfa28e;
-  border-top-left-radius: 28px;
+
+const View4 = styled.View`
+  background-color: aqua;
+  width: 50%;
 `

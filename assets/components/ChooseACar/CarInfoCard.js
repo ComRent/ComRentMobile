@@ -13,31 +13,31 @@ const CarInfoCard = props => (
             <CarInfoContainer>
                 <CarInfoALine>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/car.png")}/>
                         <CarInfoText>{props.carType}</CarInfoText>
                     </CarInfoAContent>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/carType.png")}/>
                         <CarInfoText>{props.driveType}</CarInfoText>
                     </CarInfoAContent>
                 </CarInfoALine>
                 <CarInfoALine>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/newState.png")} />
                         <CarInfoText>{props.newState}</CarInfoText>
                     </CarInfoAContent>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/volume.png")} />
                         <CarInfoText>{props.oilVolume}</CarInfoText>
                     </CarInfoAContent>
                 </CarInfoALine>
                 <CarInfoALine>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/doorNumber.png")} />
                         <CarInfoText>4</CarInfoText>
                     </CarInfoAContent>
                     <CarInfoAContent>
-                        <FontAwesome name="car" size={16} color="#797979"/>
+                        <IconContainer source={require("./imgs/volumePerson.png")} />
                         <CarInfoText>5</CarInfoText>
                     </CarInfoAContent>
                 </CarInfoALine>
@@ -98,7 +98,10 @@ const CarImage = styled.Image`
   width: 45%;
   height: 80%;
 `
-
+const IconContainer = styled.Image`
+  width: 20px;
+  height: 20px;
+`
 const CarInfoContainer = styled.View`
   height: 100%;
   width: 65%;
