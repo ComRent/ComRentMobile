@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from "react-redux";
+
 import {TouchableOpacity} from "react-native-gesture-handler";
 import { StyleSheet, TextInput, Animated, Easing } from 'react-native';
 import Input from "teaset/components/Input/Input";
 
 
-function mapStateToProps( state ) {
-    return { action: state.action };
-}
 
 class LoginScreen extends React.Component{
     state = {
@@ -74,6 +71,7 @@ class LoginScreen extends React.Component{
     static navigationOptions = {
         headerShown: false
     };
+
     render() {
         return (
             <FullContainer>
@@ -87,7 +85,7 @@ class LoginScreen extends React.Component{
                             <Avatar source={require("../../assets/CRLogoWithBG.png")}></Avatar>
                         </ImageContainer>
                     </ImageContainer1>
-                    <TitleText>{ this.props.action == "openMenu"? "ComRent":""}</TitleText>
+                    <TitleText>ComRent</TitleText>
                     <SubTitleText>为个人租借与出租车辆提供全新方案</SubTitleText>
                 </AnimatedContainer2>
 
@@ -129,7 +127,7 @@ class LoginScreen extends React.Component{
     }
 }
 
-export default connect(mapStateToProps)(LoginScreen);
+export default LoginScreen;
 
 const styles = StyleSheet.create({
     textInput: {
