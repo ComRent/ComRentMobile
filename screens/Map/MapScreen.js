@@ -2,13 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { LinearGradient } from 'expo-linear-gradient';
-import {TouchableOpacity} from "react-native-gesture-handler";
+import {TouchableOpacity} from "react-native";
 import {Animated} from "react-native";
 
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import MapMenu from "./MapMenu";
 
 class MapScreen extends React.Component {
     static navigationOptions = {
@@ -21,51 +22,39 @@ class MapScreen extends React.Component {
     render() {
         return (
             <FullContainer>
+                <MapMenu></MapMenu>
                 <MapImage source={require("./Map.png")} />
                 <TopTabContainer>
                     <LinearGradient
-                        colors={['rgb(129,102,83)', '#b8a79d']}
+                        colors={['rgb(126,100,79)', 'rgb(171,150,137)']}
                         style={{
                             width: '100%',
                             height: '100%',
-                            borderRadius: 23,
+                            borderRadius: 28,
                             justifyContent: 'flex-end',
                             alignItems: 'center',
+                            position: 'absolute',
+                            top: 0,
                         }}
                     >
                         <CityText>北京市</CityText>
                     </LinearGradient>
 
+                    {/* to main start */}
+                    <ButtonView1>
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate("HomeMain");
+                        }}>
+                            <AntDesign name="edit" size={27} color={"rgb(195,174,162)"}/>
+                        </TouchableOpacity>
+                    </ButtonView1>
+                    {/* to main end */}
                 </TopTabContainer>
 
 
 
 
                 <BottomContainer>
-
-                    <LinearGradient
-                        // Background Linear Gradient
-                        colors={['rgb(191,174,163)','rgb(178,156,142)','rgb(178,156,142)' ,'rgb(178,156,142)', 'rgb(170,149,135)']}
-                        style={{
-                            width: '105%',
-                            height:60,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'row',
-                            position: "absolute",
-                            bottom: 23,
-                            borderRadius: 40,
-                        }}
-                    />
-
-                    <WhiteBallView>
-                        <TouchableOpacity onPress={this.toggleTouchWhiteBall}>
-                            <WhiteBall>
-                                <Entypo name="chevron-up" size={35} color="rgb(178,156,142)" />
-                            </WhiteBall>
-                        </TouchableOpacity>
-                    </WhiteBallView>
-
                     <TabbarFullContainer>
                         <LinearGradient
                             // Background Linear Gradient
@@ -73,13 +62,15 @@ class MapScreen extends React.Component {
                             style={{
                                 marginBottom: -40,
                                 width: '100%',
-                                height:87,
+                                height:107,
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                flexDirection: 'row',
-                                zIndex: 1,
+                                flexDirection: 'column',
+                                borderRadius: 30,
                             }}
                         >
+
+                            <WhiteBall>
                             {/* to main start */}
                             <BottomButtonView>
                                 <TouchableOpacity onPress={() => {
@@ -136,6 +127,7 @@ class MapScreen extends React.Component {
                                 </TouchableOpacity>
                             </BottomButtonView>
                             {/* to MeMain end */}
+                            </WhiteBall>
                         </LinearGradient>
                     </TabbarFullContainer>
                 </BottomContainer>
@@ -163,16 +155,16 @@ const MapImage = styled.Image`
   height: 100%;
 `
 const TopTabContainer = styled.View`
-  height: 93px;
+  height: 95px;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   box-shadow: 0px 1px #b7a9a0;
   shadow-radius: 3px;
 `
 const CityText = styled.Text`
-  margin-bottom: 13px;
+  margin-bottom: 20px;
   font-size: 20px;
   font-weight: 500;
 `
@@ -182,19 +174,12 @@ const BottomContainer = styled.View`
   flex-direction: column;
   align-items: center;
 `
-const WhiteBallView = styled.View`
-  width: 64px;
-  height: 64px;
-  background-color: white;
-  border-radius: 32px;
-  box-shadow: 0px 3px #b3a193;
-  shadow-radius: 8px;
-  align-items: center;
-  margin-top: 10px;
-`
 const WhiteBall = styled.View`
   width: 100%;
-  height: 100%;
+  height: 60%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 `
 const TabbarFullContainer = styled.View`
   width: 100%;
@@ -209,7 +194,12 @@ const TabbarFullContainer = styled.View`
 `;
 
 const BottomButtonView = styled.View`
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   width: 18%;
   align-items: center;
+`
+const ButtonView1 = styled.View`
+  width: 18%;
+  align-items: center;
+  margin-top: 7%;
 `
